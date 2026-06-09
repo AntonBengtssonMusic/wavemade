@@ -10,10 +10,40 @@ const labelClass = "block text-xs font-semibold text-[#1D1D1F] mb-1.5 uppercase 
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      brand: (form.elements.namedItem("brand") as HTMLInputElement).value,
+      budget: (form.elements.namedItem("budget") as HTMLSelectElement).value,
+      service: (form.elements.namedItem("service") as HTMLSelectElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -87,6 +117,7 @@ export default function Contact() {
                     <label className={labelClass}>Full name</label>
                     <input
                       type="text"
+                      name="name"
                       required
                       placeholder="Jane Smith"
                       className={inputClass}
@@ -96,6 +127,7 @@ export default function Contact() {
                     <label className={labelClass}>Email address</label>
                     <input
                       type="email"
+                      name="email"
                       required
                       placeholder="jane@brand.com"
                       className={inputClass}
@@ -108,6 +140,7 @@ export default function Contact() {
                   <label className={labelClass}>Brand name</label>
                   <input
                     type="text"
+                    name="brand"
                     required
                     placeholder="Your brand or store name"
                     className={inputClass}
@@ -118,7 +151,7 @@ export default function Contact() {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className={labelClass}>Monthly ad budget</label>
-                    <select required defaultValue="" className={inputClass}>
+                    <select name="budget" required defaultValue="" className={inputClass}>
                       <option value="" disabled>Select budget</option>
                       <option>Under $1,000</option>
                       <option>$1,000–$5,000</option>
@@ -128,7 +161,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <label className={labelClass}>What do you need?</label>
-                    <select required defaultValue="" className={inputClass}>
+                    <select name="service" required defaultValue="" className={inputClass}>
                       <option value="" disabled>Select service</option>
                       <option>Product Photography</option>
                       <option>Video Ads</option>
@@ -142,20 +175,27 @@ export default function Contact() {
                 <div>
                   <label className={labelClass}>Message <span className="normal-case text-[#6E6E73] font-normal">(optional)</span></label>
                   <textarea
+                    name="message"
                     rows={4}
                     placeholder="Tell us about your product and goals..."
                     className={`${inputClass} resize-none`}
                   />
                 </div>
 
+                {/* Error */}
+                {error && (
+                  <p className="text-red-500 text-xs text-center">{error}</p>
+                )}
+
                 {/* Submit */}
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="w-full bg-[#6B5CFF] text-white font-semibold text-sm py-4 rounded-full hover:bg-[#5848e8] transition-colors duration-200 shadow-lg shadow-[#6B5CFF]/20"
+                  disabled={loading}
+                  whileHover={{ scale: loading ? 1 : 1.02 }}
+                  whileTap={{ scale: loading ? 1 : 0.97 }}
+                  className="w-full bg-[#6B5CFF] text-white font-semibold text-sm py-4 rounded-full hover:bg-[#5848e8] transition-colors duration-200 shadow-lg shadow-[#6B5CFF]/20 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {loading ? "Sending..." : "Send Message"}
                 </motion.button>
 
                 {/* Calendly option */}
