@@ -162,7 +162,7 @@ export default function Contact() {
                 <p className="text-center text-xs text-[#6E6E73] pt-1">
                   Prefer to talk directly?{" "}
                   <a
-                    href="https://calendly.com"
+                    href="https://calendly.com/anton-william-bengtsson/30min"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#6B5CFF] font-semibold hover:underline"

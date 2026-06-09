@@ -58,7 +58,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
           <motion.a
-            href="#contact"
+            href="https://calendly.com/anton-william-bengtsson/30min"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             className="bg-[#6B5CFF] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#5848e8] transition-colors duration-200"
@@ -99,7 +99,9 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="#contact"
+            href="https://calendly.com/anton-william-bengtsson/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             className="bg-[#6B5CFF] text-white text-sm font-semibold px-5 py-3 rounded-full text-center mt-2"
           >
