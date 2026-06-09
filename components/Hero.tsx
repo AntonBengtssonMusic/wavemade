@@ -71,14 +71,12 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.a
-            href="https://calendly.com/anton-william-bengtsson/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             className="bg-[#6B5CFF] text-white font-semibold text-sm px-8 py-4 rounded-full hover:bg-[#5848e8] transition-colors duration-200 shadow-lg shadow-[#6B5CFF]/25"
           >
-            Book a Free Call
+            Contact Us
           </motion.a>
           <motion.a
             href="#how-it-works"

@@ -15,12 +15,10 @@ export default function MobileCTA() {
 
       <div className="bg-white/90 backdrop-blur-xl border-t border-black/8 px-4 py-3 pb-[max(12px,env(safe-area-inset-bottom))]">
         <a
-          href="https://calendly.com/anton-william-bengtsson/30min"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#contact"
           className="flex items-center justify-center gap-2 w-full bg-[#6B5CFF] text-white font-semibold text-sm py-3.5 rounded-full hover:bg-[#5848e8] active:scale-95 transition-all duration-200 shadow-lg shadow-[#6B5CFF]/25"
         >
-          Book a Free Call →
+          Contact Us →
         </a>
       </div>
     </motion.div>
