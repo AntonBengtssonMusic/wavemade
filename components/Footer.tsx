@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -16,9 +17,12 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
           {/* Brand */}
           <div>
-            <p className="text-[#1D1D1F] font-bold text-xl tracking-tight mb-1">
-              Wave<span className="text-[#6B5CFF]">Made</span>
-            </p>
+            <div className="flex items-center gap-2.5 mb-1">
+              <Image src="/logo.png" alt="WaveMade logo" width={28} height={28} className="w-7 h-7 object-contain" />
+              <p className="text-[#1D1D1F] font-bold text-xl tracking-tight">
+                Wave<span className="text-[#6B5CFF]">Made</span>
+              </p>
+            </div>
             <p className="text-sm text-[#6E6E73]">
               AI-powered ad creative for modern brands.
             </p>

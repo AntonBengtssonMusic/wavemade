@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -34,8 +35,11 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-[#1D1D1F] font-bold text-xl tracking-tight">
-          Wave<span className="text-[#6B5CFF]">Made</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image src="/logo.png" alt="WaveMade logo" width={32} height={32} className="w-8 h-8 object-contain" />
+          <span className="text-[#1D1D1F] font-bold text-xl tracking-tight">
+            Wave<span className="text-[#6B5CFF]">Made</span>
+          </span>
         </Link>
 
         {/* Desktop nav */}
