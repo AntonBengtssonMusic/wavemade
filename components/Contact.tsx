@@ -37,7 +37,8 @@ export default function Contact() {
       if (res.ok) {
         setSubmitted(true);
       } else {
-        setError("Something went wrong. Please try again.");
+        const data = await res.json();
+        setError(data.error ?? "Something went wrong. Please try again.");
       }
     } catch {
       setError("Something went wrong. Please try again.");
